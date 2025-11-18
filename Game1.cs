@@ -9,7 +9,7 @@ namespace JustFishing;
 public class Game1 : Core
 {
     // texture region that defines the slime sprite in the atlas.
-    private TextureRegion _person;
+    private AnimatedSprite _person;
 
     public Game1() : base("Just Fishing", 1280, 720, false)
     {
@@ -25,17 +25,12 @@ public class Game1 : Core
 
     protected override void LoadContent()
     {
-        // Load the atlas texture using the content manager
-        Texture2D atlasTexture = Content.Load<Texture2D>("images/person-fishing-atlas");
-
-        //  Create a TextureAtlas instance from the atlas
-        TextureAtlas atlas = new TextureAtlas(atlasTexture);
-
-        // add the slime region to the atlas.
-        atlas.AddRegion("person", 0, 0, 16, 16);
+        // Create the texture atlas from the XML configuration file
+        TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
         // retrieve the slime region from the atlas.
-        _person = atlas.GetRegion("person");
+        _person = atlas.CreateAnimatedSprite("person-animation");
+        _person.Scale = new Vector2(4.0f, 4.0f);
 
     }
 
@@ -44,7 +39,8 @@ public class Game1 : Core
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
+        // Update the person animated sprite.
+        _person.Update(gameTime);
 
         base.Update(gameTime);
     }
@@ -58,7 +54,7 @@ public class Game1 : Core
         SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
         // Draw the slime texture region at a scale of 4.0
-        _person.Draw(SpriteBatch, Vector2.Zero, Color.White, 0.0f, Vector2.One, 4.0f, SpriteEffects.None, 0.0f);
+        _person.Draw(SpriteBatch, Vector2.Zero);
 
         // Always end the sprite batch when finished.
         SpriteBatch.End();

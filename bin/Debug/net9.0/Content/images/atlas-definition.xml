@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas>
+    <Texture>images/person-fishing-atlas</Texture>
+    <Regions>
+        <Region name="person-1" x="0" y="0" width="16" height="16" />
+        <Region name="person-2" x="16" y="0" width="16" height="16" />
+        <Region name="person-3" x="32" y="0" width="16" height="16" />
+        <Region name="person-4" x="48" y="0" width="16" height="16" />
+    </Regions>
+    <Animations>
+        <Animation name="person-animation" delay="200">
+            <Frame region="person-1" />
+            <Frame region="person-2" />
+            <Frame region="person-3" />
+            <Frame region="person-4" />
+        </Animation>
+    </Animations>
+</TextureAtlas>
