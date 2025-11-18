@@ -39,8 +39,14 @@ public class Game1 : Core
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
+        if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+        {
+            // Start the walking animation when the mouse is clicked.
+            _person.Update(gameTime);
+        }
+
         // Update the person animated sprite.
-        _person.Update(gameTime);
+        // _person.Update(gameTime);
 
         base.Update(gameTime);
     }
