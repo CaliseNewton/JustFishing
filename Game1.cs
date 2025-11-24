@@ -3,13 +3,14 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
+using JustFishing.GameObjects;
 
 namespace JustFishing;
 
 public class Game1 : Core
 {
     // texture region that defines the slime sprite in the atlas.
-    private AnimatedSprite _person;
+    private Player _player;
 
     public Game1() : base("Just Fishing", 1280, 720, false)
     {
@@ -28,25 +29,33 @@ public class Game1 : Core
         // Create the texture atlas from the XML configuration file
         TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
-        // retrieve the slime region from the atlas.
-        _person = atlas.CreateAnimatedSprite("person-animation");
-        _person.Scale = new Vector2(4.0f, 4.0f);
+        // initialize animation for player.
+        AnimatedSprite playerSprite = atlas.CreateAnimatedSprite("idle");
+
+        playerSprite.AddAnimation("idle", atlas.GetAnimation("idle"));
+        playerSprite.AddAnimation("cast", atlas.GetAnimation("cast"));
+        playerSprite.AddAnimation("waitingForBite", atlas.GetAnimation("waitingForBite"));
+        playerSprite.Scale = new Vector2(4.0f, 4.0f);
+
+        // create player
+        _player = new Player(playerSprite);
 
     }
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+        var mouse = Mouse.GetState();
+
+        // Allows the game to exit
+        if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+        if (mouse.LeftButton == ButtonState.Pressed && (_player.State == PlayerState.Idle || _player.State == PlayerState.WaitingForBite))
         {
-            // Start the walking animation when the mouse is clicked.
-            _person.Update(gameTime);
+            _player.StartCast();
         }
 
-        // Update the person animated sprite.
-        // _person.Update(gameTime);
+        _player.Update(gameTime);
 
         base.Update(gameTime);
     }
@@ -60,7 +69,7 @@ public class Game1 : Core
         SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
         // Draw the slime texture region at a scale of 4.0
-        _person.Draw(SpriteBatch, Vector2.Zero);
+        _player.Draw();
 
         // Always end the sprite batch when finished.
         SpriteBatch.End();
