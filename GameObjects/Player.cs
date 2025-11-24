@@ -15,6 +15,13 @@ public class Player
     private float castTimer = 0f;
     private readonly float castDuration = 0.8f;
 
+    private float waitTimer = 0f;
+    private readonly float waitDuration = 0.8f;
+
+    private Random _randomWaitMultiplier;
+
+    private int fishCaught = 0;
+
     /// <summary>
     /// Gets or Sets the position of the player.
     /// </summary>
@@ -26,6 +33,7 @@ public class Player
     public Player(AnimatedSprite sprite)
     {
         // Initialize player with sprite
+        _randomWaitMultiplier = new Random();
         _sprite = sprite;
         _sprite.Play("idle");
     }
@@ -46,11 +54,30 @@ public class Player
 
         switch (State)
         {
+            case PlayerState.Idle:
+                // Idle logic can be added here
+                break;
             case PlayerState.Casting:
                 castTimer += elapsed;
 
                 if (castTimer >= castDuration)
                     FinishCast();
+                break;
+            case PlayerState.WaitingForBite:
+                // Waiting for bite logic can be added here
+                waitTimer += elapsed;
+                if (waitTimer >= waitDuration * _randomWaitMultiplier.Next(4, 10))
+                {
+                    // Simulate a fish bite after waiting
+                    State = PlayerState.Reeling;
+                    _sprite.Play("reeling");
+                    waitTimer = 0f;
+                    //TODO: Add logic for fish bite event
+                    ReelInFish();
+                }
+                break;
+            case PlayerState.Reeling:
+                // Reeling logic can be added here
                 break;
         }
     }
@@ -64,5 +91,14 @@ public class Player
     {
         State = PlayerState.WaitingForBite;
         _sprite.Play("waitingForBite");
+    }
+
+    private void ReelInFish()
+    {
+        // Logic for reeling in fish can be added here
+        fishCaught++;
+        System.Diagnostics.Debug.WriteLine($"Fish caught! Total: {fishCaught}");
+        State = PlayerState.Idle;
+        _sprite.Play("idle");
     }
 }

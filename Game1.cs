@@ -35,6 +35,7 @@ public class Game1 : Core
         playerSprite.AddAnimation("idle", atlas.GetAnimation("idle"));
         playerSprite.AddAnimation("cast", atlas.GetAnimation("cast"));
         playerSprite.AddAnimation("waitingForBite", atlas.GetAnimation("waitingForBite"));
+        playerSprite.AddAnimation("reeling", atlas.GetAnimation("reeling"));
         playerSprite.Scale = new Vector2(4.0f, 4.0f);
 
         // create player

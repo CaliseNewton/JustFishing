@@ -20,5 +20,8 @@
         <Animation name="waitingForBite" delay="1000" isLooping="true">
             <Frame region="person-4" />
         </Animation>
+        <Animation name="reeling" delay="1000" isLooping="true">
+            <Frame region="person-4" />
+        </Animation>
     </Animations>
 </TextureAtlas>
