@@ -18,7 +18,7 @@ public class Player
 
     private Random _randomWaitMultiplier;
 
-    private int fishCaught = 0;
+    public int FishCaught { get; private set; } = 0;
 
     /// <summary>
     /// Gets or Sets the position of the player.
@@ -98,7 +98,7 @@ public class Player
 
         State = PlayerState.Reeling;
         _sprite.Play("caught");
-        fishCaught++;
-        System.Diagnostics.Debug.WriteLine($"Fish caught! Total: {fishCaught}");
+        FishCaught++;
+        System.Diagnostics.Debug.WriteLine($"Fish caught! Total: {FishCaught}");
     }
 }

@@ -12,6 +12,8 @@ public class Game1 : Core
     // texture region that defines the slime sprite in the atlas.
     private Player _player;
 
+    private SpriteFont _font;
+
     private Vector2 _playerPosition = new Vector2(0.5f * 1280, 0.5f * 720);
 
     public Game1() : base("Just Fishing", 1280, 720, false)
@@ -28,6 +30,8 @@ public class Game1 : Core
 
     protected override void LoadContent()
     {
+        _font = Content.Load<SpriteFont>("fonts/ScoreFont");
+
         // Create the texture atlas from the XML configuration file
         TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
@@ -73,8 +77,10 @@ public class Game1 : Core
         // Begin the sprite batch to prepare for rendering.
         SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-        // Draw the slime texture region at a scale of 4.0
+        // Draw the player texture region at a scale of 4.0
         _player.Draw();
+
+        SpriteBatch.DrawString(_font, $"Score: {_player.FishCaught}", new Vector2(10, 10), Color.White);
 
         // Always end the sprite batch when finished.
         SpriteBatch.End();

@@ -4,9 +4,11 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>c:/Projects/JustFishing/JustFishing/Content/fonts/ScoreFont.spritefont</File>
     <File>c:/Projects/JustFishing/JustFishing/Content/images/person-fishing-atlas.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>
