@@ -1,2 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"c:/Projects/JustFishing/JustFishing/Content/images/atlas-definition.xml","c:\Projects\JustFishing\JustFishing\Content\bin\DesktopGL\Content\images/atlas-definition.xml","CopyItem","File",1123,1123,0.0011175
+"c:/Projects/JustFishing/JustFishing/Content/images/atlas-definition.xml","c:\Projects\JustFishing\JustFishing\Content\bin\DesktopGL\Content\images/atlas-definition.xml","CopyItem","File",1730,1730,0.0009425
+"c:/Projects/JustFishing/JustFishing/Content/images/person-fishing-atlas.png","c:/Projects/JustFishing/JustFishing/Content/bin/DesktopGL/Content/images/person-fishing-atlas.xnb","TextureProcessor","Texture2DContent",524,8277,0.0741795

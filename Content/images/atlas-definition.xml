@@ -2,26 +2,38 @@
 <TextureAtlas>
     <Texture>images/person-fishing-atlas</Texture>
     <Regions>
-        <Region name="person-1" x="0" y="0" width="16" height="16" />
-        <Region name="person-2" x="16" y="0" width="16" height="16" />
-        <Region name="person-3" x="32" y="0" width="16" height="16" />
-        <Region name="person-4" x="48" y="0" width="16" height="16" />
+        <Region name="idle" x="0" y="0" width="16" height="16" />
+        <Region name="cast-1" x="16" y="0" width="16" height="16" />
+        <Region name="cast-2" x="32" y="0" width="16" height="16" />
+        <Region name="waiting" x="48" y="0" width="16" height="16" />
+        <Region name="reeling-1" x="0" y="16" width="16" height="16" />
+        <Region name="reeling-2" x="16" y="16" width="16" height="16" />
+        <Region name="caught-1" x="32" y="16" width="16" height="16" />
+        <Region name="caught-2" x="48" y="16" width="16" height="16" />
     </Regions>
     <Animations>
         <Animation name="idle" delay="1000" isLooping="true">
-            <Frame region="person-1" />
+            <Frame region="idle" />
         </Animation>
         <Animation name="cast" delay="200" isLooping="false">
-            <Frame region="person-1" />
-            <Frame region="person-2" />
-            <Frame region="person-3" />
-            <Frame region="person-4" />
+            <Frame region="idle" />
+            <Frame region="cast-1" />
+            <Frame region="cast-2" />
+            <Frame region="waiting" />
         </Animation>
         <Animation name="waitingForBite" delay="1000" isLooping="true">
-            <Frame region="person-4" />
+            <Frame region="waiting" />
         </Animation>
-        <Animation name="reeling" delay="1000" isLooping="true">
-            <Frame region="person-4" />
+        <Animation name="reeling" delay="200" isLooping="true">
+            <Frame region="reeling-1" />
+            <Frame region="reeling-2" />
+            <Frame region="reeling-2" />
+        </Animation>
+        <Animation name="caught" delay="200" isLooping="false">
+            <Frame region="reeling-1" />
+            <Frame region="reeling-2" />
+            <Frame region="caught-1" />
+            <Frame region="caught-2" />
         </Animation>
     </Animations>
 </TextureAtlas>

@@ -12,6 +12,8 @@ public class Game1 : Core
     // texture region that defines the slime sprite in the atlas.
     private Player _player;
 
+    private Vector2 _playerPosition = new Vector2(0.5f * 1280, 0.5f * 720);
+
     public Game1() : base("Just Fishing", 1280, 720, false)
     {
 
@@ -36,11 +38,13 @@ public class Game1 : Core
         playerSprite.AddAnimation("cast", atlas.GetAnimation("cast"));
         playerSprite.AddAnimation("waitingForBite", atlas.GetAnimation("waitingForBite"));
         playerSprite.AddAnimation("reeling", atlas.GetAnimation("reeling"));
+        playerSprite.AddAnimation("caught", atlas.GetAnimation("caught"));
         playerSprite.Scale = new Vector2(4.0f, 4.0f);
 
         // create player
         _player = new Player(playerSprite);
 
+        _player.Position = _playerPosition;
     }
 
     protected override void Update(GameTime gameTime)
@@ -51,7 +55,7 @@ public class Game1 : Core
         if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        if (mouse.LeftButton == ButtonState.Pressed && (_player.State == PlayerState.Idle || _player.State == PlayerState.WaitingForBite))
+        if (mouse.LeftButton == ButtonState.Pressed)
         {
             _player.StartCast();
         }
@@ -64,7 +68,7 @@ public class Game1 : Core
     protected override void Draw(GameTime gameTime)
     {
         // Clear the back buffer.
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.DarkOliveGreen);
 
         // Begin the sprite batch to prepare for rendering.
         SpriteBatch.Begin(samplerState: SamplerState.PointClamp);

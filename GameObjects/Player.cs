@@ -3,8 +3,6 @@ using System;
 using Microsoft.Xna.Framework;
 using MonoGameLibrary.Graphics;
 using MonoGameLibrary;
-using MonoGame.Framework.Devices.Sensors;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace JustFishing.GameObjects;
 
@@ -72,7 +70,6 @@ public class Player
                     State = PlayerState.Reeling;
                     _sprite.Play("reeling");
                     waitTimer = 0f;
-                    //TODO: Add logic for fish bite event
                     ReelInFish();
                 }
                 break;
@@ -95,10 +92,13 @@ public class Player
 
     private void ReelInFish()
     {
-        // Logic for reeling in fish can be added here
+        //TODO: Add success/failure logic for catching fish.
+            //Will be a tension minigame, white = good, red = bad / break line and lose fish.
+            //Also some visual for the fish getting closer to the surface.
+
+        State = PlayerState.Reeling;
+        _sprite.Play("caught");
         fishCaught++;
         System.Diagnostics.Debug.WriteLine($"Fish caught! Total: {fishCaught}");
-        State = PlayerState.Idle;
-        _sprite.Play("idle");
     }
 }
