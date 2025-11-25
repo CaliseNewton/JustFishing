@@ -70,7 +70,6 @@ public class Player
                     State = PlayerState.Reeling;
                     _sprite.Play("reeling");
                     waitTimer = 0f;
-                    ReelInFish();
                 }
                 break;
             case PlayerState.Reeling:
@@ -90,15 +89,16 @@ public class Player
         _sprite.Play("waitingForBite");
     }
 
-    private void ReelInFish()
-    {
-        //TODO: Add success/failure logic for catching fish.
-            //Will be a tension minigame, white = good, red = bad / break line and lose fish.
-            //Also some visual for the fish getting closer to the surface.
-
-        State = PlayerState.Reeling;
+    public void CatchFish()
+    {        
         _sprite.Play("caught");
+        State = PlayerState.Idle;
         FishCaught++;
-        System.Diagnostics.Debug.WriteLine($"Fish caught! Total: {FishCaught}");
+    }
+
+    public void FishEscape()
+    {
+        _sprite.Play("idle");
+        State = PlayerState.Idle;
     }
 }

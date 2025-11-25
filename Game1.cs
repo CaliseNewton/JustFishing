@@ -16,6 +16,8 @@ public class Game1 : Core
 
     private Vector2 _playerPosition = new Vector2(0.5f * 1280, 0.5f * 720);
 
+    FishingHandler _fishingHandler = new FishingHandler();
+
     public Game1() : base("Just Fishing", 1280, 720, false)
     {
 
@@ -49,6 +51,12 @@ public class Game1 : Core
         _player = new Player(playerSprite);
 
         _player.Position = _playerPosition;
+
+        _fishingHandler = new FishingHandler();
+
+        //wire up events
+        _fishingHandler.OnCaught += _player.CatchFish;
+        _fishingHandler.OnEscaped += _player.FishEscape;
     }
 
     protected override void Update(GameTime gameTime)
@@ -59,10 +67,20 @@ public class Game1 : Core
         if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        if (mouse.LeftButton == ButtonState.Pressed)
+        if (mouse.LeftButton == ButtonState.Pressed && _player.State != PlayerState.Reeling)
         {
             _player.StartCast();
         }
+
+        bool reelHeld = mouse.RightButton == ButtonState.Pressed && _player.State == PlayerState.Reeling;
+
+        if (_player.State == PlayerState.Reeling && !_fishingHandler.IsFishing)
+        {
+            // Start fishing with some example reel power and fish strength
+            _fishingHandler.StartFishing(reelPower: 20f, fishStrength: 15f);
+        }
+
+        _fishingHandler.UpdateFishing(gameTime, reelHeld);
 
         _player.Update(gameTime);
 
