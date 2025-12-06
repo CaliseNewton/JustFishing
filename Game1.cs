@@ -91,7 +91,7 @@ public class Game1 : Core
         if (_player.State == PlayerState.Reeling && !_fishingHandler.IsFishing)
         {
             // Start fishing with some example reel power and fish strength
-            _fishingHandler.StartFishing(reelPower: 20f, fishStrength: 15f);
+            _fishingHandler.StartFishing(reelPower: 50f, fishStrength: 40f);
         }
 
         _fishingHandler.UpdateFishing(gameTime, reelHeld);
