@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
 using JustFishing.GameObjects;
+using System;
 
 namespace JustFishing;
 
@@ -16,7 +17,7 @@ public class Game1 : Core
 
     private Vector2 _playerPosition = new Vector2(0.5f * 1280, 0.5f * 720);
 
-    FishingHandler _fishingHandler = new FishingHandler();
+    private FishingHandler _fishingHandler;
 
     public Game1() : base("Just Fishing", 1280, 720, false)
     {
@@ -52,7 +53,20 @@ public class Game1 : Core
 
         _player.Position = _playerPosition;
 
-        _fishingHandler = new FishingHandler();
+        
+        TextureAtlas fishAtlas = TextureAtlas.FromFile(Content, "images/fishing-atlas-definition.xml");
+
+        //create fish sprite for fishing handler
+        AnimatedSprite fishSprite = fishAtlas.CreateAnimatedSprite("fishFlop");
+        fishSprite.AddAnimation("fishFlop", fishAtlas.GetAnimation("fishFlop"));
+        fishSprite.Scale = new Vector2(2.0f, 2.0f);
+
+        AnimatedSprite fishHud = fishAtlas.CreateAnimatedSprite("fishBar");
+        fishHud.AddAnimation("fishBar", fishAtlas.GetAnimation("fishBar"));
+
+        fishHud.Scale = new Vector2(2.0f, 2.0f);
+
+        _fishingHandler = new FishingHandler(fishSprite, fishHud);
 
         //wire up events
         _fishingHandler.OnCaught += _player.CatchFish;
@@ -98,7 +112,13 @@ public class Game1 : Core
         // Draw the player texture region at a scale of 4.0
         _player.Draw();
 
-        SpriteBatch.DrawString(_font, $"Score: {_player.FishCaught}", new Vector2(10, 10), Color.White);
+        SpriteBatch.DrawString(_font, $"Score: {_fishingHandler.FishCaught}", new Vector2(10, 10), Color.White);
+
+        SpriteBatch.DrawString(_font, $"Depth: {Math.Round(_fishingHandler.CurrentDepth)}", new Vector2(10, 50), Color.White);
+
+        SpriteBatch.DrawString(_font, $"Tension: {Math.Round(_fishingHandler.Tension)}", new Vector2(10, 90), Color.White); 
+
+        _fishingHandler.Draw();
 
         // Always end the sprite batch when finished.
         SpriteBatch.End();

@@ -18,7 +18,6 @@ public class Player
 
     private Random _randomWaitMultiplier;
 
-    public int FishCaught { get; private set; } = 0;
 
     /// <summary>
     /// Gets or Sets the position of the player.
@@ -93,7 +92,6 @@ public class Player
     {        
         _sprite.Play("caught");
         State = PlayerState.Idle;
-        FishCaught++;
     }
 
     public void FishEscape()

@@ -42,3 +42,5 @@ c:\Projects\JustFishing\JustFishing\bin\Debug\net9.0\TextCopy.dll
 c:\Projects\JustFishing\JustFishing\bin\Debug\net9.0\Content\images\atlas-definition.xml
 c:\Projects\JustFishing\JustFishing\obj\Debug\net9.0\JustFishing.sourcelink.json
 c:\Projects\JustFishing\JustFishing\bin\Debug\net9.0\Content\fonts\ScoreFont.xnb
+c:\Projects\JustFishing\JustFishing\bin\Debug\net9.0\Content\images\fishing-atlas-definition.xml
+c:\Projects\JustFishing\JustFishing\bin\Debug\net9.0\Content\images\fishing-atlas.xnb
