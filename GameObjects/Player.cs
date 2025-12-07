@@ -90,7 +90,6 @@ public class Player
         {
             if (State != PlayerState.Reeling)
             {
-                System.Console.WriteLine("Casting!");
                 StartCast();
             }
         }
@@ -115,7 +114,7 @@ public class Player
             // consume buffered input when allowed
             _direction = _inputBuffer.Dequeue();
         }
-        else if (!_isMovementKeyDown && State != PlayerState.Casting && State != PlayerState.Reeling && State != PlayerState.WaitingForBite && State != PlayerState.CaughtFish)
+        else if (!_isMovementKeyDown && State.IsMoving())
         {
             // no key pressed and no buffered directions → STOP
             _direction = Vector2.Zero;
