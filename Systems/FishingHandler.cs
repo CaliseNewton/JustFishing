@@ -15,7 +15,7 @@ public class FishingHandler
     public int FishCaught { get; private set; } = 0;
     public event Action OnCaught;
     public event Action OnEscaped;
-    private float hudYPosition = 50f;
+    private int hudYPosition = 200;
     private AnimatedSprite _sprite;
     private AnimatedSprite _fishHud;
 
@@ -102,15 +102,11 @@ public class FishingHandler
         float t = (CurrentDepth - escapeThreshold) / (catchThreshold - escapeThreshold);
         t = MathHelper.Clamp(t, 0f, 1f);
 
-        float fishY = MathHelper.Lerp(hudYPosition + 64f, hudYPosition, t);
+        float fishY = MathHelper.Lerp(hudYPosition + 128 - 32, hudYPosition, t);
 
 
         float normaliseTension = (Tension - 0f) / (10f - 0f);
         normaliseTension = MathHelper.Clamp(normaliseTension, 0f, 1f);
-
-        // float red = MathHelper.Lerp(255f, 0f, normaliseTension);
-
-        // Console.WriteLine(red);
 
         Color tint = new Color(1f, 1f - normaliseTension, 1f - normaliseTension, 255f);
         _fishHud.Color = tint;
