@@ -46,12 +46,12 @@ public class Game1 : Core
         playerSprite.AddAnimation("waitingForBite", atlas.GetAnimation("waitingForBite"));
         playerSprite.AddAnimation("reeling", atlas.GetAnimation("reeling"));
         playerSprite.AddAnimation("caught", atlas.GetAnimation("caught"));
+        playerSprite.AddAnimation("walkRight", atlas.GetAnimation("walk"));
+        playerSprite.AddAnimation("walkUpDown", atlas.GetAnimation("walkUpDown"));
         playerSprite.Scale = new Vector2(4.0f, 4.0f);
 
         // create player
-        _player = new Player(playerSprite);
-
-        _player.Position = _playerPosition;
+        _player = new Player(playerSprite, _playerPosition);
 
         
         TextureAtlas fishAtlas = TextureAtlas.FromFile(Content, "images/fishing-atlas-definition.xml");
@@ -80,11 +80,6 @@ public class Game1 : Core
         // Allows the game to exit
         if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-
-        if (mouse.LeftButton == ButtonState.Pressed && _player.State != PlayerState.Reeling)
-        {
-            _player.StartCast();
-        }
 
         bool reelHeld = mouse.RightButton == ButtonState.Pressed && _player.State == PlayerState.Reeling;
 

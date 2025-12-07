@@ -10,6 +10,14 @@
         <Region name="reeling-2" x="16" y="16" width="16" height="16" />
         <Region name="caught-1" x="32" y="16" width="16" height="16" />
         <Region name="caught-2" x="48" y="16" width="16" height="16" />
+        <Region name="walk-1" x="0" y="32" width="16" height="16" />
+        <Region name="walk-2" x="16" y="32" width="16" height="16" />
+        <Region name="walk-3" x="32" y="32" width="16" height="16" />
+        <Region name="walk-4" x="48" y="32" width="16" height="16" />
+        <Region name="walk-up-1" x="0" y="48" width="16" height="16" />
+        <Region name="walk-up-2" x="16" y="48" width="16" height="16" />
+        <Region name="walk-up-3" x="32" y="48" width="16" height="16" />
+        <Region name="walk-up-4" x="48" y="48" width="16" height="16" />
     </Regions>
     <Animations>
         <Animation name="idle" delay="1000" isLooping="true">
@@ -34,6 +42,18 @@
             <Frame region="reeling-2" />
             <Frame region="caught-1" />
             <Frame region="caught-2" />
+        </Animation>
+        <Animation name="walk" delay="200" isLooping="true">
+            <Frame region="walk-1" />
+            <Frame region="walk-2" />
+            <Frame region="walk-3" />
+            <Frame region="walk-4" />
+        </Animation>
+        <Animation name="walkUpDown" delay="200" isLooping="true">
+            <Frame region="walk-up-1" />
+            <Frame region="walk-up-2" />
+            <Frame region="walk-up-3" />
+            <Frame region="walk-up-4" />
         </Animation>
     </Animations>
 </TextureAtlas>

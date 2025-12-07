@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>c:/Projects/JustFishing/JustFishing/Content/images/person-fishing-atlas.png</SourceFile>
-  <SourceTime>2025-11-24T18:47:49.775338+10:00</SourceTime>
+  <SourceTime>2025-12-07T12:03:44.6776928+10:00</SourceTime>
   <DestFile>c:/Projects/JustFishing/JustFishing/Content/bin/DesktopGL/Content/images/person-fishing-atlas.xnb</DestFile>
-  <DestTime>2025-11-24T18:56:02.4735374+10:00</DestTime>
+  <DestTime>2025-12-07T15:00:45.9760667+10:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2025-10-21T00:25:32+10:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -3,5 +3,10 @@ public enum PlayerState
     Idle,
     Casting,
     WaitingForBite,
-    Reeling
+    Reeling,
+    CaughtFish,
+    WalkingUp,
+    WalkingDown,
+    WalkingLeft,
+    WalkingRight
 }

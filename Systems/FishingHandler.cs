@@ -104,7 +104,6 @@ public class FishingHandler
 
         float fishY = MathHelper.Lerp(hudYPosition + 128 - 32, hudYPosition, t);
 
-
         float normaliseTension = (Tension - 0f) / (10f - 0f);
         normaliseTension = MathHelper.Clamp(normaliseTension, 0f, 1f);
 
